@@ -32,9 +32,23 @@
         }
         .submit_btn {
             margin-top: 20px;
+            background-color: #6c757d;
+            border-color: #6c757d;
+            width: 70%;
+        }
+        textarea#comment {
+            resize: none;
+            width: 70%;
         }
     }
     .pagination.row {
         margin-top: 50px;
+    }
+}
+#logout_form a {
+    color: rgba(255, 255, 255, 0.55);
+    &:hover {
+        background-color: transparent;
+        color: rgba(255, 255, 255, 0.75);
     }
 }

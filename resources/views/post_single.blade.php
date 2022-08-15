@@ -16,7 +16,9 @@
             </div>
 
             <div class="row">
-                <img class="post_img col-6" src="https://via.placeholder.com/300/000000/FFFFFF/?text=Post_image">
+                <div class="col-6">
+                    <img class="post_img" src="https://via.placeholder.com/300/000000/FFFFFF/?text=Post_image">
+                </div>
                 <div class="col-6"></div>
 
                 <p class="post_descr col-12">
@@ -25,14 +27,28 @@
 
             </div>
 
+            <hr/>
+
+            <div class="row">
+                <div class="col-12">
+                    <h2>Комментарии:</h2>
+                    @foreach($post['comments'] as $comment)
+                        <p class="comment_item" data-comment_id="{{$comment->id}}">{{$comment->content}}</p>
+                        <hr>
+                    @endforeach
+                </div>
+            </div>
+
+            <hr/>
+
             <div class="row">
                 <div class="col-12">
                     <h2>Отправить комментарий</h2>
                     <form class="row" id="comment_form" action="/api/add_comment" enctype="multipart/form-data" method="post" name="comment">
                         <input type="hidden" name="post_id" value="{{$post['info']->id}}">
-
+                        <input type="hidden" name="parent_id" value="39">
                         <label class="col-12" for="comment">Комментарий</label>
-                        <textarea class="col-12" id="comment" name="content" rows="10" required></textarea>
+                        <textarea class="col-12" id="comment" name="content" rows="5" required></textarea>
 
                         <button type="submit" class="btn btn-secondary submit_btn">Отправить</button>
                     </form>

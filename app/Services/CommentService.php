@@ -7,25 +7,24 @@ use Illuminate\Support\Facades\Log;
 
 class CommentService
 {
-    public $comment_data;
-    public function __construct($comment)
-    {
-       $this->comment_data = $comment;
-    }
-
-    public function addComment() {
-        sleep(10);
+    public function addComment($comment_data) {
         try {
             $comment = new Comment;
-            $comment->title = $this->comment_data['title'];
-            $comment->content = $this->comment_data['content'];
-            $comment->post_id = $this->comment_data['post_id'];
+            $comment->content = $comment_data['content'];
+            $comment->post_id = $comment_data['post_id'];
+            $comment->parent_id = $comment_data['parent_id'];
             $result = $comment->save();
             return $result;
         }
         catch(\Exception $e) {
             Log::error('Exception: '.$e->getMessage());
+            Log::error($e->getTraceAsString());
             return false;
         }
+    }
+
+    public function getPostComments($post) {
+        $comments = $post->comments;
+        return $comments;
     }
 }

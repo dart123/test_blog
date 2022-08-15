@@ -7,4 +7,5 @@
             <a class="nav-link" href="/articles/">Каталог статей</a>
         </li>
     </ul>
+    @include('base.logout')
 </nav>

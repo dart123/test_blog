@@ -1,5 +1,11 @@
 require('./bootstrap');
 
+import Alpine from 'alpinejs';
+
+window.Alpine = Alpine;
+
+Alpine.start();
+
 $(document).ready(function() {
     $('#comment_form').submit(function(e) {
         e.preventDefault(); // avoid to execute the actual submit of the form.
@@ -21,7 +27,7 @@ $(document).ready(function() {
                         .empty()
                         .prepend('<div style="color: green">Ваше сообщение успешно отправлено</div>');
                 }
-               else
+                else
                 {
                     $('#comment_form')
                         .parent()

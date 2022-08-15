@@ -19,5 +19,3 @@ use App\Http\Controllers;
 //    return $request->user();
 //});
 Route::post('/add_comment', 'CommentController@store');
-Route::post('/add_like', 'PostMetaController@addLike');
-Route::post('/add_view', 'PostMetaController@addView');

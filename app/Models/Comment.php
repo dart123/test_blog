@@ -11,11 +11,19 @@ class Comment extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        'title',
-        'content'
+        'content',
+        'post_id'
     ];
 
     public function post() {
         return $this->belongsTo(Post::class);
+    }
+    public function parent()
+    {
+        return $this->belongsTo(Comment::class, 'id', 'parent_id');
+    }
+    public function children()
+    {
+        return $this->hasMany(Comment::class, 'parent_id', 'id')->with('children');
     }
 }

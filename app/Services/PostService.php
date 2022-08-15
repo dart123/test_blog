@@ -8,6 +8,12 @@ use PHPUnit\Exception;
 
 class PostService
 {
+    private CommentService $commentService;
+    public function __construct(CommentService $commentService)
+    {
+        $this->commentService = $commentService;
+    }
+
     public function getLastPosts($post_num = 6) {
         return Post::select('*')
             ->orderBy('id', 'DESC')
@@ -25,30 +31,10 @@ class PostService
     public function getPostBySlug($slug) {
         try {
             $post = Post::where('slug', '=', $slug)->firstOrFail();
-            $post_metas = $post->metas();
 
-            $post_metas = $post_metas->select('meta_key', 'meta_value')
-                ->whereIn('meta_key', ['likes', 'views'])
-                ->get();
-
-            $likes = $post_metas
-                ->first(function($item) {
-                    return $item->meta_key == 'likes';
-                })
-                ->meta_value;
-
-            $views = $post_metas
-                ->first(function($item) {
-                    return $item->meta_key == 'views';
-                })
-                ->meta_value;
-
-            $comments = $post->comments()
-                ->get();
+            $comments = $this->commentService->getPostComments($post);
             return [
                 'info' => $post,
-                'likes' => $likes,
-                'views' => $views,
                 'comments' => $comments
             ];
         }

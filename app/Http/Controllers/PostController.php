@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\CommentService;
 use App\Services\PostService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
@@ -9,9 +10,10 @@ use Illuminate\Support\Facades\App;
 class PostController extends Controller
 {
     private $postService;
-    public function __construct(PostService $service)
+
+    public function __construct(PostService $postService)
     {
-        $this->postService = $service;
+        $this->postService = $postService;
     }
 
     public function index() {
@@ -43,7 +45,7 @@ class PostController extends Controller
         }
 
         $active_menu_item = 'catalog';
-        //return '<pre>'.print_r($post,true).'</pre>';
+
         return view('post_single',
             [
                 'post' => $post,
