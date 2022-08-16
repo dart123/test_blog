@@ -14,8 +14,15 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', 'PostController@index');
-Route::get('/articles', 'PostController@getAll');
-Route::get('/articles/{slug}', 'PostController@getSingle');
+//Route::get('/articles/{slug}', 'PostController@getSingle');
+
+Route::get('/articles/my_posts', 'PostController@getPostsByUser')->middleware('auth');
+
+Route::resource('/articles', 'PostController');
+//Route::get('/articles/edit/{id}', 'PostController@edit');
+//Route::post('/articles/new','PostController@add');
+//Route::post('/articles/{id}', 'PostController@update');
+//Route::delete('/articles/{id}', 'PostController@delete');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

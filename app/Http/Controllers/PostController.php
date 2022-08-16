@@ -26,7 +26,7 @@ class PostController extends Controller
             ]
         );
     }
-    public function getAll() {
+    public function getPostsByUser() {
         $posts = $this->postService->getAllPosts(10);
         $active_menu_item = 'catalog';
         return view('post_list',
@@ -37,7 +37,7 @@ class PostController extends Controller
         );
     }
 
-    public function getSingle($slug) {
+    public function show($slug) {
         $post = $this->postService->getPostBySlug($slug);
         if (!$post)
         {
