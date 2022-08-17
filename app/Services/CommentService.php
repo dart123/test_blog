@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Comment;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
 class CommentService
@@ -13,6 +14,7 @@ class CommentService
             $comment->content = $comment_data['content'];
             $comment->post_id = $comment_data['post_id'];
             $comment->parent_id = $comment_data['parent_id'];
+            $comment->user_id = Auth::user()->id;
             $result = $comment->save();
             return $result;
         }
