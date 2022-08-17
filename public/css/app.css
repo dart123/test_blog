@@ -46,6 +46,10 @@
   resize: none;
   width: 70%;
 }
+.main__wrapper .post_full .comment_item {
+  margin: 10px 0;
+  width: 50%;
+}
 .main__wrapper .pagination.row {
   margin-top: 50px;
 }
@@ -74,6 +78,10 @@ a.login_text {
 }
 #edit_form textarea, #create_form textarea {
   resize: none;
+}
+
+.reply_to_text {
+  font-style: italic;
 }
 
 /*!

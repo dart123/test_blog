@@ -33,7 +33,11 @@
                 <div class="col-12">
                     <h2>Комментарии:</h2>
                     @foreach($post['comments'] as $comment)
-                        <p class="comment_item" data-comment_id="{{$comment->id}}">{{$comment->content}}</p>
+                        <div class="comment_item" data-comment_id="{{$comment->id}}">
+                            <p class="comment_user">{{$comment->user->name}}</p>
+                            <p class="comment_text">{{$comment->content}}</p>
+                            <button class="btn-primary reply_btn">Reply</button>
+                        </div>
                         <hr>
                     @endforeach
                 </div>
@@ -44,9 +48,11 @@
             <div class="row">
                 <div class="col-12">
                     <h2>Отправить комментарий</h2>
+                    <p>Replying to:</p>
+                    <p class="reply_to_text"></p>
                     <form class="row" id="comment_form" action="/api/add_comment" enctype="multipart/form-data" method="post" name="comment">
                         <input type="hidden" name="post_id" value="{{$post['info']->id}}">
-                        <input type="hidden" name="parent_id" value="39">
+                        <input type="hidden" name="parent_id" value="">
                         <label class="col-12" for="comment">Комментарий</label>
                         <textarea class="col-12" id="comment" name="content" rows="5" required></textarea>
 

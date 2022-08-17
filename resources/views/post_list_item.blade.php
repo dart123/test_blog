@@ -22,6 +22,7 @@
                 </p>
             </div>
         </div>
+        @auth
         <div class="col-6">
             <div class="post_buttons">
                 <a class="edit_btn" href="/articles/{{$post->id}}/edit">
@@ -32,5 +33,6 @@
                 </div>
             </div>
         </div>
+        @endauth
     </div>
 </div>

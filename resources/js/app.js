@@ -81,6 +81,12 @@ $(document).ready(function() {
             return false;
         }
     });
+    $('.reply_btn').click(function() {
+       let comment_id = $(this).parents('.comment_item').data('comment_id');
+       $('#comment_form input[name="parent_id"]').val(comment_id);
+       let comment_text = $(this).parents('.comment_item').find('.comment_text').text();
+       $('.reply_to_text').text(comment_text.substring(0, 50));
+    });
 });
 function delete_post(post_id, $delete_btn) {
     $.ajax({

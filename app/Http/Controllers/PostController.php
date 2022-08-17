@@ -6,6 +6,7 @@ use App\Models\Post;
 use App\Services\PostService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Redirect;
@@ -20,7 +21,7 @@ class PostController extends Controller
     }
 
     public function index() {
-        $posts = $this->postService->getLastPosts(6);
+        $posts = $this->postService->getAllPosts();
         $active_menu_item = 'main';
         return view('main',
             [
@@ -30,7 +31,7 @@ class PostController extends Controller
         );
     }
     public function create() {
-        return view('post_create');
+        return view('post_create', ['active_menu_item' => 'create_post']);
     }
     public function edit($id) {
         $post = Post::where('id', $id)->first();
@@ -79,8 +80,8 @@ class PostController extends Controller
             }
         }
     }
-    public function getPostsByUser() {
-        $posts = $this->postService->getAllPosts(10);
+    public function myPosts() {
+        $posts = $this->postService->getPostsPerUser(Auth::user()->id);
         $active_menu_item = 'catalog';
         return view('post_list',
             [

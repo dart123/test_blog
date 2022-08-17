@@ -3,11 +3,13 @@
 namespace App\Services;
 
 use App\Models\Post;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use PHPUnit\Exception;
 
 class PostService
 {
+    private const PER_PAGE = 10;
     private CommentService $commentService;
     public function __construct(CommentService $commentService)
     {
@@ -22,7 +24,7 @@ class PostService
 
     }
 
-    public function getAllPosts($per_page = 10) {
+    public function getAllPosts($per_page = self::PER_PAGE) {
         return Post::select('*')
             ->orderBy('id', 'DESC')
             ->paginate($per_page);
@@ -43,6 +45,9 @@ class PostService
             return false;
         }
     }
+    public function getPostsPerUser($userId, $perPage = self::PER_PAGE) {
+        return Post::where('user_id', $userId)->paginate($perPage);
+    }
 
     public function storePost($data, $id=null) {
         if (isset($id)) {
@@ -51,6 +56,7 @@ class PostService
         else {
             $post = new Post();
         }
+        $data['user_id'] = Auth::user()->id;
         $post->fill($data);
         $post->save();
         return $post;
