@@ -5,4 +5,8 @@
     <link rel="stylesheet" href="/css/app.css">
 
     <title>@yield('title')</title>
+    <script>
+        var current_user_id = {{ Auth::user()->id }};
+        var csrf_token = '{{ csrf_token() }}';
+    </script>
 </head>

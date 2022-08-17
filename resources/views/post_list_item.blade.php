@@ -1,18 +1,18 @@
-<div class="col-6 post_item" onclick="window.location.href='/articles/{{$post->slug}}'">
+<div class="col-6 post_item">
     <div class="row">
         <div class="col-6">
             <div class="row">
                 <p class="col-12">id поста: {{$post->id}}</p>
-                <h2 class="post_title col-12">
+                <a class="post_title col-12" href="/articles/{{$post->slug}}">
                     {{$post->title}}
-                </h2>
+                </a>
             </div>
 
             <div class="row">
                 <img class="post_img col-4" src="https://via.placeholder.com/150/000000/FFFFFF/?text=Post_image"/>
 
                 <p class="post_descr col-8">
-                    {{substr($post->description, 0, 100) . ' ...'}}
+                    {{substr($post->description, 0, 200) . ' ...'}}
                 </p>
             </div>
 
@@ -27,9 +27,9 @@
                 <a class="edit_btn" href="/articles/{{$post->id}}/edit">
                     <img src="/img/edit.svg"/>
                 </a>
-                <a class="delete_btn" href="/articles/{{$post->id}}">
+                <div class="delete_btn" data-post_id="{{$post->id}}" >
                     <img src="/img/delete.svg"/>
-                </a>
+                </div>
             </div>
         </div>
     </div>

@@ -5038,6 +5038,11 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 window.Alpine = alpinejs__WEBPACK_IMPORTED_MODULE_0__["default"];
 alpinejs__WEBPACK_IMPORTED_MODULE_0__["default"].start();
 $(document).ready(function () {
+  $.ajaxSetup({
+    headers: {
+      'X-CSRF-TOKEN': csrf_token
+    }
+  });
   $('#comment_form').submit(function (e) {
     e.preventDefault(); // avoid to execute the actual submit of the form.
 
@@ -5089,7 +5094,32 @@ $(document).ready(function () {
       }
     });
   });
+  $('.delete_btn').click(function () {
+    var post_id = $(this).data('post_id');
+
+    if (confirm('Are you sure you want to delete this post?')) {
+      delete_post(post_id, $(this));
+    } else {
+      return false;
+    }
+  });
 });
+
+function delete_post(post_id, $delete_btn) {
+  $.ajax({
+    type: "DELETE",
+    url: '/articles/' + post_id,
+    success: function success(data) {
+      var response = JSON.parse(data);
+
+      if (response.hasOwnProperty('success') && response.success == '1') {
+        $delete_btn.parents('.post_item').remove();
+      }
+
+      console.log(data); // show response from the php script.
+    }
+  });
+}
 
 /***/ }),
 

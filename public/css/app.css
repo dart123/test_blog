@@ -16,6 +16,9 @@
 }
 .main__wrapper .post_container .post_item .post_title {
   height: 80px;
+  font-size: 24px;
+  cursor: pointer;
+  color: blue;
 }
 .main__wrapper .post_container .post_item .post_buttons {
   display: flex;
@@ -23,6 +26,9 @@
 }
 .main__wrapper .post_container .post_item .post_buttons img {
   height: 64px;
+}
+.main__wrapper .post_container .post_item .post_buttons .delete_btn {
+  cursor: pointer;
 }
 .main__wrapper .post_full {
   margin-top: calc(3% + 64px);
@@ -60,12 +66,13 @@ a.login_text {
   color: white;
 }
 
-#edit_form {
+#edit_form, #create_form {
   width: 30%;
   display: flex;
   flex-direction: column;
+  margin-top: 64px;
 }
-#edit_form textarea {
+#edit_form textarea, #create_form textarea {
   resize: none;
 }
 

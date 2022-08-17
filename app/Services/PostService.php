@@ -44,8 +44,13 @@ class PostService
         }
     }
 
-    public function updatePost($id, $data) {
-        $post = Post::where('id', $id)->firstOrFail();
+    public function storePost($data, $id=null) {
+        if (isset($id)) {
+            $post = Post::where('id', $id)->firstOrFail();
+        }
+        else {
+            $post = new Post();
+        }
         $post->fill($data);
         $post->save();
         return $post;
