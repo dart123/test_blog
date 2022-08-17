@@ -86,6 +86,10 @@ a.login_text, a.register_text {
   font-style: italic;
 }
 
+.user_container {
+  margin-top: 100px;
+}
+
 /*!
  * Bootstrap v5.0.2 (https://getbootstrap.com/)
  * Copyright 2011-2021 The Bootstrap Authors

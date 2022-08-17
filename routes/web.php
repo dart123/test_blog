@@ -23,5 +23,6 @@ Route::post('/add_comment', 'CommentController@store')->middleware(['auth']);
 Route::get('/dashboard', function () {
     return view('dashboard');
 });
+Route::get('/users', 'UserController@index');
 
 require __DIR__.'/auth.php';

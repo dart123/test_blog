@@ -1,6 +1,6 @@
 @extends('base.base')
 
-@section('title', 'Главная')
+@section('title', 'Single post')
 
 @section('content')
 
