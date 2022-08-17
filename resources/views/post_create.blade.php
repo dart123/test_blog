@@ -22,6 +22,7 @@
         <textarea id="description" name="description" cols="5" rows="5"></textarea>
         <label for="slug">Slug</label>
         <input type="text" name="slug" id="slug">
+        <input type="hidden" name="user_id" value="{{!empty(Auth::user() ? Auth::user()->id : '')}}">
         <input type="submit" class="btn btn-primary" value="Save">
     </form>
 @endsection

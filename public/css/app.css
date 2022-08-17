@@ -54,7 +54,9 @@
   margin-top: 50px;
 }
 
-a.login_text {
+a.login_text, a.register_text {
+  display: block;
+  margin: 5px 10px;
   color: white;
 }
 

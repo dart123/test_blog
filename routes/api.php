@@ -18,4 +18,3 @@ use App\Http\Controllers;
 //Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //    return $request->user();
 //});
-Route::post('/add_comment', 'CommentController@store');

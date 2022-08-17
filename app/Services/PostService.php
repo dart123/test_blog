@@ -56,7 +56,6 @@ class PostService
         else {
             $post = new Post();
         }
-        $data['user_id'] = Auth::user()->id;
         $post->fill($data);
         $post->save();
         return $post;

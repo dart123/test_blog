@@ -18,6 +18,7 @@
         @endauth
     </ul>
     @guest
+        <a class="register_text" href="{{route('register')}}">Register</a>
         <a class="login_text" href="{{route('login')}}">Log in</a>
     @endguest
     @auth

@@ -6,7 +6,7 @@
 
     <title>@yield('title')</title>
     <script>
-        var current_user_id = {{ Auth::user()->id }};
+        var current_user_id = {{ !empty(Auth::user()) ? Auth::user()->id : 0 }};
         var csrf_token = '{{ csrf_token() }}';
     </script>
 </head>

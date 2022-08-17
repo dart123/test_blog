@@ -26,7 +26,8 @@ class CommentService
     }
 
     public function getPostComments($post) {
-        $comments = $post->comments;
+        //get first level comments
+        $comments = $post->comments()->where('parent_id', null)->get();
         return $comments;
     }
 }
