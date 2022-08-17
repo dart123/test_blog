@@ -42,6 +42,12 @@ class PostService
             Log::error('Exception: '.$e->getMessage());
             return false;
         }
+    }
 
+    public function updatePost($id, $data) {
+        $post = Post::where('id', $id)->firstOrFail();
+        $post->fill($data);
+        $post->save();
+        return $post;
     }
 }

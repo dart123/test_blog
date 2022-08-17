@@ -53,10 +53,25 @@
         margin-top: 50px;
     }
 }
+a.login_text {
+    color: white;
+}
 #logout_form a {
     color: rgba(255, 255, 255, 0.55);
     &:hover {
         background-color: transparent;
         color: rgba(255, 255, 255, 0.75);
+    }
+}
+.user_name {
+    color: white;
+}
+#edit_form {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+
+    textarea {
+        resize: none;
     }
 }

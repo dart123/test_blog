@@ -1,3 +1,4 @@
+<p class="user_name">{{Auth::user()->name}}</p>
 <form method="POST" action="{{ route('logout') }}" id="logout_form">
     @csrf
 
